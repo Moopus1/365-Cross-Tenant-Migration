@@ -15,8 +15,7 @@
     DateCreated: JUL 2022
 #>
 
-# Run this report on the source location. It will export the needed information for the DestinationUserCreation script.
-$csv = Import-CSV C:\Temp\BMHUsers.csv
+$csv = Import-CSV C:\Temp\Users.csv
 
 $csv | ForEach-Object {
     $DisplayName = Get-Mailbox -Identity $_.UPN | Select-Object DisplayName -ExpandProperty DisplayName
