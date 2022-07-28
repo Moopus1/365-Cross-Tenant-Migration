@@ -7,3 +7,18 @@ I've created 3 scripts to simplify the user data exports, new destination MailUs
 These should hopefully allow for easier and cheaper 365-to-365 migrations, without needing to rely on a vendor tool like BitTitan.
 
 The scripts contain more documentation within the comments and header info at the top.
+
+# Running the scripts
+
+As a prerequisite, install the Exchange-Online PowerShell Module. You can install this with the following Cmdlet:
+
+```PowerShell
+Install-Module -Name ExchangeOnlineManagement
+```
+
+Once installed, copy the three PowerShell scripts somewhere local on your PC, e,g C:\temp.
+
+Connecto to Exchange-Online PowerShell using the following Cmdlet
+```PowerShell
+Connect-ExchangeOnline
+```
