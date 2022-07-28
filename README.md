@@ -18,7 +18,7 @@ Install-Module -Name ExchangeOnlineManagement
 
 Once installed, copy the three PowerShell scripts somewhere local on your PC, e,g C:\temp.
 
-Connecto to Exchange-Online PowerShell using the following Cmdlet
+Connect to Exchange-Online PowerShell using the following Cmdlet
 ```PowerShell
 Connect-ExchangeOnline
 ```
