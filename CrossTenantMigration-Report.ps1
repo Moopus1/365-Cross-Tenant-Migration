@@ -34,5 +34,5 @@ $csv | ForEach-Object {
     $report | Add-Member -MemberType NoteProperty -name 'ArchiveGuid' -Value $ArchiveGuid
     $report | Add-Member -MemberType NoteProperty -name 'AdditionalX500' -Value $AdditionalX500
     $ExportFile = "C:\temp\Export.csv" 
-    $report | Export-CSV $ExportFile -NoTypeInformation -Append  
+    $report | Export-CSV $ExportFile -NoTypeInformation -Encoding UTF8 -Append  
 }
