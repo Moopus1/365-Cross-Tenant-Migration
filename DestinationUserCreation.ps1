@@ -14,8 +14,8 @@
   .NOTES
     Name: DestinationUserCreation.ps1
     Author: Alex - alexf@macrotg.com
-    Version: 1.0
-    DateCreated: JUL 2022
+    Version: 1.1
+    DateCreated: AUG 2023
 #>
 
 $CSV = Import-Csv -Path C:\temp\Export.csv

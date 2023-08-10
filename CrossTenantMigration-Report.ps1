@@ -15,7 +15,7 @@
     DateCreated: AUG 2023
 #>
 
-$csv = Import-CSV C:\Temp\365-Cross-Tenant-Migration-main\SWG.csv
+$csv = Import-CSV C:\Temp\YourUsersExportFrom365.csv
 
 $csv | ForEach-Object {
     $DisplayName = Get-Mailbox -Identity $_.UPN | Select-Object DisplayName -ExpandProperty DisplayName
