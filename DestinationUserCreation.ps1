@@ -26,7 +26,9 @@ $CSV | ForEach-Object {
     # Creation of user below --------------------------------------------------------------------------------
     $trunk = "x500:"+$_.LegacyExchangeDN
     $AdditionalX500 = $_.AdditionalX500
+    $AdditionalX500Array = $AdditionalX500 -split ";"
     $Secure = ConvertTo-SecureString "Apples123!" -AsPlainText -Force
+    Write-Host "Creating user" $_.DisplayName -ForegroundColor Yellow
     New-MailUser -Name $_.DisplayName -ExternalEmailAddress $_.PrimarySmtp -MicrosoftOnlineServicesID $_.DestinationSmtp -Password $Secure
     Write-Host "Waiting..." -ForegroundColor Green
     Start-Sleep -Seconds 2
@@ -37,5 +39,5 @@ $CSV | ForEach-Object {
     Start-Sleep -Seconds 1
 
     #Add Additional X500 Addresses
-    Set-MailUser -Identity $_.DisplayName -EmailAddresses @{add=$AdditionalX500} -ErrorAction SilentlyContinue
+    Set-MailUser -Identity $_.DisplayName -EmailAddresses @{add=$AdditionalX500Array} -ErrorAction SilentlyContinue
 }

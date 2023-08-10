@@ -11,11 +11,11 @@
   .NOTES
     Name: CrossTenantMigration-Report.ps1
     Author: alexf@macrotg.com
-    Version: 1.0
-    DateCreated: JUL 2022
+    Version: 1.1
+    DateCreated: AUG 2023
 #>
 
-$csv = Import-CSV C:\Temp\Users.csv
+$csv = Import-CSV C:\Temp\365-Cross-Tenant-Migration-main\SWG.csv
 
 $csv | ForEach-Object {
     $DisplayName = Get-Mailbox -Identity $_.UPN | Select-Object DisplayName -ExpandProperty DisplayName
@@ -25,6 +25,7 @@ $csv | ForEach-Object {
     $LegacyExchangeDN = Get-Mailbox -Identity $_.UPN | Select-Object LegacyExchangeDN -ExpandProperty LegacyExchangeDN
     $ArchiveGuid = Get-Mailbox -Identity $_.UPN | Select-Object ArchiveGuid -ExpandProperty ArchiveGuid
     $AdditionalX500 = Get-Mailbox -Identity $_.UPN | Select-Object EmailAddresses -ExpandProperty EmailAddresses | where {$_ -match 'X500'}
+    $AdditionalX500Array = $AdditionalX500 -join ";"
     $report = New-Object psobject
     $report | Add-Member -MemberType NoteProperty -name 'DisplayName' -Value $DisplayName
     $report | Add-Member -MemberType NoteProperty -name 'PrimarySmtp' -Value $PrimarySmtp
@@ -32,7 +33,7 @@ $csv | ForEach-Object {
     $report | Add-Member -MemberType NoteProperty -name 'ExchangeGUID' -Value $ExchangeGUID
     $report | Add-Member -MemberType NoteProperty -name 'LegacyExchangeDN' -Value $LegacyExchangeDN
     $report | Add-Member -MemberType NoteProperty -name 'ArchiveGuid' -Value $ArchiveGuid
-    $report | Add-Member -MemberType NoteProperty -name 'AdditionalX500' -Value $AdditionalX500
+    $report | Add-Member -MemberType NoteProperty -name 'AdditionalX500' -Value $AdditionalX500Array
     $ExportFile = "C:\temp\Export.csv" 
     $report | Export-CSV $ExportFile -NoTypeInformation -Encoding UTF8 -Append  
 }
